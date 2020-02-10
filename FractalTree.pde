@@ -1,11 +1,10 @@
 private double fractionLength = 0.85;
 private int smallestBranch = 20;
 //private double branchAngle = 0.35;
-private double branchAngle = (Math.random()*0.15) + 0.2;
+private double branchAngle = 0.35;
 public void setup() 
 {   
-    size(700,700);    
-    noLoop();
+    size(700,700);
     stroke(112, 56, 0);
 
 } 
@@ -53,9 +52,9 @@ public void drawBranches(float x, float y, double branchLength, double angle)
     line(x, y, endX1, endY1);
     line(x, y, endX2, endY2);
     if(length > smallestBranch){
-        branchAngle = (Math.random()*0.15) + 0.2;
-        double angle1Next = angle + branchAngle;
-        double angle2Next = angle - branchAngle;
+        double branchAngleNext = (Math.random()*0.025) + 0.325;
+        double angle1Next = angle + branchAngleNext;
+        double angle2Next = angle - branchAngleNext;
         drawBranches(endX1, endY1, length, angle1Next);
         drawBranches(endX2, endY2, length, angle2Next);
     }
