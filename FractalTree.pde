@@ -1,5 +1,5 @@
-private double fractionLength = 0.9;
-private int smallestBranch = 50;
+private double fractionLength = 0.85;
+private int smallestBranch = 20;
 private double branchAngle = 0.35;
 public void setup() 
 {   
@@ -10,7 +10,10 @@ public void setup()
 } 
 public void draw() 
 {   
-    background(0);
+    background(16, 186, 224);
+    stroke(255, 247, 0, 220);
+    fill(255, 247, 0, 220);
+    ellipse(0, 0, 150, 150);
     double angle = 3*Math.PI/2;
     double lengthOfInitialBranch = 100;
     int startX = 350;
@@ -44,21 +47,33 @@ public void drawBranches(float x, float y, double branchLength, double angle)
     int endY1 = (int)(branchLength*Math.sin(angle1) + y);
     int endX2 = (int)(branchLength*Math.cos(angle2) + x);
     int endY2 = (int)(branchLength*Math.sin(angle2) + y);
-    strokeWeight((float)branchLength / 15);
+    strokeWeight((float)branchLength / 12);
+    stroke(112, 56, 0);
     line(x, y, endX1, endY1);
     line(x, y, endX2, endY2);
     if(length > smallestBranch){
         drawBranches(endX1, endY1, length, angle1);
         drawBranches(endX2, endY2, length, angle2);
-    }else{
+    }
+    if(length < 50){
         translate(endX1, endY1);
         rotate((float)angle1);
+        leaf(endY1, endY1, 13, 10);
         rotate(-1*(float)angle1);
         translate(-1*endX1, -1*endY1);
 
-        translate(endX1, endY1);
+        translate(endX2, endY2);
         rotate((float)angle2);
-        rotate(-1*(float)(float)angle2);
-        translate(-1*endX1, -1*endY1);
+        leaf(endX2, endY2, 13, 10);
+        rotate(-1*(float)angle2);
+        translate(-1*endX2, -1*endY2);
     }
-} 
+}
+public void leaf(float x, float y, float w, float h){
+    stroke(75, 219, 35);
+    fill(75, 219, 35);
+    ellipse(0, 0, w, h);
+    //if(h >= 5){
+    //    leaf(x, y + (0.5*h), w * 0.75, h * 0.85);
+    //}
+}
