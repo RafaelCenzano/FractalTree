@@ -21,6 +21,7 @@ public void draw()
 
     // Trunk
     fill(112, 56, 0);
+    stroke(112, 56, 0);
     double angle1 = angle + branchAngle;
     double angle2 = angle - branchAngle;
     double length = lengthOfInitialBranch * fractionLength;
@@ -37,7 +38,7 @@ public void draw()
     endShape(CLOSE);
 
     drawBranches(startX, startY, lengthOfInitialBranch, angle);
-} 
+}
 public void drawBranches(float x, float y, double branchLength, double angle) 
 {   
     double angle1 = angle + branchAngle;
@@ -47,7 +48,7 @@ public void drawBranches(float x, float y, double branchLength, double angle)
     int endY1 = (int)(branchLength*Math.sin(angle1) + y);
     int endX2 = (int)(branchLength*Math.cos(angle2) + x);
     int endY2 = (int)(branchLength*Math.sin(angle2) + y);
-    strokeWeight((float)branchLength / 12);
+    strokeWeight((float)branchLength / 7);
     stroke(112, 56, 0);
     line(x, y, endX1, endY1);
     line(x, y, endX2, endY2);
